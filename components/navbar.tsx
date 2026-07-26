@@ -36,9 +36,9 @@ export default function Navbar() {
 
     return (
         <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-sm">
-            <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-4 md:flex-row md:items-center md:justify-between md:px-10">
+            <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 md:flex-row md:items-center md:justify-between md:px-10 md:py-4">
                 <div className="flex items-center justify-between gap-6">
-                    <Link href="/" className="text-2xl font-bold uppercase tracking-[0.3em] text-slate-950">
+                    <Link href="/" className="text-xl md:text-2xl font-bold uppercase tracking-[0.3em] text-slate-950">
                         sumniwa
                     </Link>
                     <button
@@ -60,19 +60,19 @@ export default function Navbar() {
                     id="primary-navigation"
                     className={`w-full md:grid md:flex-1 md:grid-cols-[1fr_auto_1fr] md:items-center overflow-hidden transition-all duration-300 ${menuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'} md:overflow-visible md:max-h-none md:opacity-100`}
                 >
-                    <nav className="flex flex-col gap-3 border-t border-slate-200 py-4 md:col-start-2 md:justify-self-center md:border-none md:flex-row md:gap-8 md:py-0">
-                        <Link href="/" className="text-sm font-medium text-slate-700 transition hover:text-slate-950 px-2 py-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-200" onClick={() => setMenuOpen(false)}>
+                    <nav className="flex flex-col gap-2 border-t border-slate-200 py-3 md:col-start-2 md:justify-self-center md:border-none md:flex-row md:gap-8 md:py-0">
+                        <Link href="/" className="text-sm font-medium text-slate-700 transition hover:text-slate-950 px-3 py-3 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-200" onClick={() => setMenuOpen(false)}>
                             Home
                         </Link>
-                        <Link href="/category" className="text-sm font-medium text-slate-700 transition hover:text-slate-950 px-2 py-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-200" onClick={() => setMenuOpen(false)}>
+                        <Link href="/category" className="text-sm font-medium text-slate-700 transition hover:text-slate-950 px-3 py-3 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-200" onClick={() => setMenuOpen(false)}>
                             Category
                         </Link>
-                        <Link href="/products" className="text-sm font-medium text-slate-700 transition hover:text-slate-950 px-2 py-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-200" onClick={() => setMenuOpen(false)}>
+                        <Link href="/products" className="text-sm font-medium text-slate-700 transition hover:text-slate-950 px-3 py-3 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-200" onClick={() => setMenuOpen(false)}>
                             Products
                         </Link>
                     </nav>
 
-                    <div className="flex flex-col gap-3 border-t border-slate-200 pt-4 md:col-start-3 md:justify-self-end md:border-none md:flex-row md:items-center md:gap-3 md:pt-0">
+                    <div className="flex flex-col gap-3 border-t border-slate-200 pt-3 md:col-start-3 md:justify-self-end md:border-none md:flex-row md:items-center md:gap-3 md:pt-0">
                         <Link href="/cart" className="relative inline-flex items-center text-sm font-medium text-slate-700 transition hover:text-slate-950 px-2 py-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-200" onClick={() => setMenuOpen(false)}>
                             Cart
                             {totalItems > 0 && (

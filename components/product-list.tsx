@@ -42,19 +42,19 @@ export default function ProductList() {
                         <Link key={p.id} href={`/products/${p.id}`} className="relative block overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-slate-200">
                             <article className="cursor-pointer">
                                 <div className="relative">
-                                    <div className="relative h-40 w-full">
+                                    <div className="relative h-36 w-full sm:h-40">
                                         <Image src={(p.image as any)?.src ?? p.image} alt={p.name} className="object-cover" fill sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 16vw" />
                                     </div>
                                     <div className="absolute left-2 top-2 inline-flex items-center rounded-full bg-orange-500 px-2 py-1 text-xs font-semibold text-white">-{discount}%</div>
                                 </div>
 
-                                <div className="p-3">
+                                <div className="p-2 sm:p-3">
                                     <h3 className="line-clamp-2 mb-1 text-sm font-medium text-slate-900">{p.name}</h3>
 
                                     <div className="flex items-end justify-between">
                                         <div>
                                             <div className="flex items-baseline gap-2">
-                                                <span className="text-sm font-semibold text-orange-600">{p.currency}{p.price.toLocaleString()}</span>
+                                                <span className="text-sm sm:text-base font-semibold text-orange-600">{p.currency}{p.price.toLocaleString()}</span>
                                                 <span className="text-xs text-slate-400 line-through">{p.currency}{p.original.toLocaleString()}</span>
                                             </div>
                                             <div className="mt-2 flex items-center gap-2">
@@ -70,7 +70,7 @@ export default function ProductList() {
                                         <button
                                             type="button"
                                             onClick={(e) => handleAdd(e, p)}
-                                            className="ml-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-950 text-white transition hover:bg-slate-800"
+                                            className="ml-3 inline-flex h-9 w-9 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-slate-950 text-white transition hover:bg-slate-800"
                                             aria-label={`Add ${p.name} to cart`}
                                         >
                                             {addingId === p.id ? '✓' : '+'}
