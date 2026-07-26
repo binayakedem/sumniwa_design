@@ -7,6 +7,7 @@ type CartItem = {
     name: string;
     price: number;
     image?: string;
+    currency?: string;
     qty: number;
 };
 
