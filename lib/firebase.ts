@@ -16,7 +16,9 @@ const firebaseConfig = {
 export const firebaseApp = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
 function isValidDatabaseUrl(url: string) {
-    return /^https:\/\/[A-Za-z0-9-]+\.firebaseio\.com(?:\/)?$/.test(url);
+    // Accept both legacy `firebaseio.com` domains and the newer
+    // regional `firebasedatabase.app` domains (with optional subdomains).
+    return /^https:\/\/[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.(?:firebaseio\.com|firebasedatabase\.app)(?:\/.*)?$/.test(url);
 }
 
 export const db: Database | null = isValidDatabaseUrl(databaseUrl) ? getDatabase(firebaseApp) : null;
