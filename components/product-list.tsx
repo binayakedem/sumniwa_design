@@ -60,7 +60,7 @@ export default function ProductList() {
                                             <div className="mt-2 flex items-center gap-2">
                                                 <div className="flex items-center">
                                                     {Array.from({ length: 5 }).map((_, i) => (
-                                                        <Star key={i} filled={i < Math.round(p.rating)} />
+                                                        <Star key={i} filled={i < Math.round(p.rating ?? 0)} />
                                                     ))}
                                                 </div>
                                                 <span className="text-xs text-slate-500">({p.reviews})</span>
