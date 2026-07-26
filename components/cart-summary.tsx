@@ -5,15 +5,15 @@ const cartItems = [
 
 export default function CartSummary() {
     return (
-        <div style={{ display: 'grid', gap: '1rem', maxWidth: '560px' }}>
+        <div className="grid max-w-xl gap-4">
             {cartItems.map((item) => (
-                <div key={item.id} style={{ padding: '1rem', border: '1px solid #ddd', borderRadius: '0.75rem' }}>
-                    <h2>{item.name}</h2>
-                    <p>Quantity: {item.quantity}</p>
-                    <p>{item.price}</p>
+                <div key={item.id} className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+                    <h2 className="text-lg font-semibold text-slate-950">{item.name}</h2>
+                    <p className="mt-1 text-sm text-slate-600">Quantity: {item.quantity}</p>
+                    <p className="mt-1 text-sm font-medium text-slate-900">{item.price}</p>
                 </div>
             ))}
-            <div style={{ fontWeight: 'bold' }}>Total: $199.98</div>
+            <div className="text-base font-semibold text-slate-950">Total: $199.98</div>
         </div>
     );
 }

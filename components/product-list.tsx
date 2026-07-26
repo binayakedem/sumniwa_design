@@ -6,12 +6,17 @@ const dummyProducts = [
 
 export default function ProductList() {
     return (
-        <div style={{ display: 'grid', gap: '1rem' }}>
+        <div className="grid gap-4">
             {dummyProducts.map((product) => (
-                <article key={product.id} style={{ padding: '1rem', border: '1px solid #ddd', borderRadius: '0.75rem' }}>
-                    <h2>{product.name}</h2>
-                    <p>{product.price}</p>
-                    <button type="button">Add to cart</button>
+                <article key={product.id} className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+                    <h2 className="text-lg font-semibold text-slate-950">{product.name}</h2>
+                    <p className="mt-1 text-sm font-medium text-slate-700">{product.price}</p>
+                    <button
+                        type="button"
+                        className="mt-4 inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800"
+                    >
+                        Add to cart
+                    </button>
                 </article>
             ))}
         </div>

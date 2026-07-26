@@ -18,12 +18,14 @@ A Next.js TypeScript frontend scaffold for an ecommerce site with Firebase authe
 npm install
 ```
 
-2. Add Firebase config values in `lib/firebase.ts`.
+2. Copy `.env.example` to `.env.local` and fill in your Firebase values.
 
-3. Run the development server:
+3. Enable Google sign-in in your Firebase console.
+
+4. Run the development server:
 
 ```bash
 npm run dev
 ```
 
-4. Deploy to Vercel by connecting this repository to Vercel and using the production branch.
+5. Deploy to Vercel by connecting this repository to Vercel and using the production branch.
