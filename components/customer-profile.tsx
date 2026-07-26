@@ -18,6 +18,11 @@ export default function CustomerProfile() {
     const [showEditModal, setShowEditModal] = useState(false);
 
     const loadProfile = async (currentUser: User) => {
+        if (!db) {
+            setMessage('Database access is not configured in this deployment.');
+            return;
+        }
+
         try {
             const profileRef = ref(db, `customerProfiles/${currentUser.uid}`);
             const profileSnap = await get(profileRef);
@@ -49,6 +54,11 @@ export default function CustomerProfile() {
         const currentUser = auth.currentUser;
         if (!currentUser) {
             setMessage('Please sign in again.');
+            return;
+        }
+
+        if (!db) {
+            setMessage('Database access is not configured in this deployment.');
             return;
         }
 

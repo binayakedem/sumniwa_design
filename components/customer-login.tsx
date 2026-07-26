@@ -23,6 +23,12 @@ export default function CustomerLogin() {
                 return;
             }
 
+            if (!db) {
+                setMessage('Signed in successfully, but database access is not configured in this deployment.');
+                router.push('/customer/phone');
+                return;
+            }
+
             let nextRoute = '/customer/phone';
             try {
                 const profileRef = ref(db, `customerProfiles/${user.uid}`);

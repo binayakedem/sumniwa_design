@@ -21,6 +21,11 @@ export default function CustomerPhonePage() {
             return;
         }
 
+        if (!db) {
+            setMessage('Database access is not configured in this deployment.');
+            return;
+        }
+
         try {
             const profileRef = ref(db, `customerProfiles/${user.uid}`);
             await update(profileRef, { phone });
