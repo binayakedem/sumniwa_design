@@ -48,6 +48,9 @@ export default function HomePage() {
             <section className="relative overflow-hidden px-6 py-16 sm:px-10 lg:px-16">
                 <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
                     <div className="space-y-6 max-w-2xl">
+                        <div className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-500 shadow-sm">
+                            Vercel build 39bb856
+                        </div>
                         <span className="text-sm font-semibold uppercase tracking-[0.35em] text-slate-500">
                             SUMNIWA COLLECTION
                         </span>
