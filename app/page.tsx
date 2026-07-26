@@ -1,47 +1,21 @@
 import Link from 'next/link';
 import HomeAuthCta from '../components/home-auth-cta';
 import heroImage from './homepicture.jpg';
-import firstImage from './img/first.jpg';
-import secondImage from './img/seond.jpg';
-import thirdImage from './img/third.jpg';
-import fourthImage from './img/fourth.jpg';
-import fifthImage from './img/fifth.jpg';
-import sixthImage from './img/sixth.jpg';
-import seventhImage from './img/seventh.jpg';
-import eightImage from './img/eight.jpg';
-import nineImage from './img/nine.jpg';
-import tenthImage from './img/tenth.jpg';
-import eleventImage from './img/elevent.jpg';
-import twelveImage from './img/twelve.jpg';
-import thirteenImage from './img/thirteen.jpg';
-import fourteenImage from './img/fourteen.jpg';
+import Image from 'next/image';
+import { PRODUCTS } from '../lib/products';
+import dynamic from 'next/dynamic';
+const FlashCarousel = dynamic(() => import('../components/flash-carousel'), { ssr: false });
 
-const flashSaleItems = [
-    { name: 'Horlicks Classic Malt Jar 500 gm', price: 'Rs.444', oldPrice: 'Rs.445', image: firstImage.src },
-    { name: 'Summer Half Shorts Collection', price: 'Rs.499', oldPrice: 'Rs.850', image: secondImage.src },
-    { name: 'Lightweight Pullover Jacket', price: 'Rs.599', oldPrice: 'Rs.1,499', image: thirdImage.src },
-    { name: 'Scalp Massage Brush', price: 'Rs.99', oldPrice: 'Rs.120', image: fourthImage.src },
-    { name: 'Exfoliating Gloves Body Care', price: 'Rs.99', oldPrice: 'Rs.350', image: fifthImage.src },
-    { name: 'Snail Facial Mask Pack', price: 'Rs.54', oldPrice: 'Rs.90', image: sixthImage.src },
-];
+const flashSaleItems = PRODUCTS.slice(0, 6);
 
 const categoryImages = [
-    { label: 'Beauty', image: seventhImage.src },
-    { label: 'Fashion', image: eightImage.src },
-    { label: 'Electronics', image: nineImage.src },
-    { label: 'Home', image: tenthImage.src },
+    { label: 'Beauty', image: PRODUCTS[6].image },
+    { label: 'Fashion', image: PRODUCTS[7].image },
+    { label: 'Electronics', image: PRODUCTS[8].image },
+    { label: 'Home', image: PRODUCTS[9].image },
 ];
 
-const justForYouItems = [
-    { name: 'Premium Super Soft Bed Floor Carpet', price: 'Rs.1,399', oldPrice: 'Rs.2,499', image: eleventImage.src, rating: '4.8', reviews: 13 },
-    { name: 'Men Premium Summer Combo Set', price: 'Rs.1,099', oldPrice: 'Rs.1,899', image: twelveImage.src, rating: '4.6', reviews: 12 },
-    { name: 'Elegant Womens Lace Set', price: 'Rs.181', oldPrice: 'Rs.499', image: thirteenImage.src, rating: '4.7', reviews: 3 },
-    { name: 'Soft Velvet Thick Carpet Mat', price: 'Rs.1,599', oldPrice: 'Rs.3,299', image: fourteenImage.src, rating: '4.5', reviews: 1 },
-    { name: 'Suction Cup Phone Case Mount', price: 'Rs.90', oldPrice: 'Rs.399', image: firstImage.src, rating: '4.7', reviews: 36 },
-    { name: 'Portable High-Speed Handheld Fan', price: 'Rs.563', oldPrice: 'Rs.1,499', image: secondImage.src, rating: '4.4', reviews: 2 },
-    { name: 'Modern Fashion Hoodie Set', price: 'Rs.899', oldPrice: 'Rs.1,699', image: thirdImage.src, rating: '4.6', reviews: 9 },
-    { name: 'Compact Home Utility Organizer', price: 'Rs.749', oldPrice: 'Rs.1,350', image: fourthImage.src, rating: '4.5', reviews: 7 },
-];
+const justForYouItems = PRODUCTS.slice(6, 14);
 
 export default function HomePage() {
     return (
@@ -77,12 +51,8 @@ export default function HomePage() {
                             <div className="absolute left-6 top-6 rounded-full bg-slate-950 px-4 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-white">
                                 NEW
                             </div>
-                            <div className="aspect-[4/5] min-h-[360px] overflow-hidden">
-                                <img
-                                    src={heroImage.src}
-                                    alt="Model wearing modern apparel"
-                                    className="h-full w-full object-cover"
-                                />
+                            <div className="aspect-[4/5] min-h-[360px] overflow-hidden relative">
+                                <Image src={heroImage} alt="Model wearing modern apparel" fill className="object-cover" sizes="(max-width: 1024px) 50vw, 40vw" />
                             </div>
                             <div className="space-y-1 p-6 text-slate-900">
                                 <strong className="block text-lg">Red Silk Kimono</strong>
@@ -108,17 +78,10 @@ export default function HomePage() {
                         </Link>
                     </div>
 
-                    <div className="grid gap-3 p-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-                        {flashSaleItems.map((item) => (
-                            <article key={item.name} className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-                                <div className="aspect-square overflow-hidden rounded-xl bg-slate-100">
-                                    <img src={item.image} alt={item.name} className="h-full w-full object-cover" />
-                                </div>
-                                <h3 className="mt-3 line-clamp-2 text-sm font-medium leading-5 text-slate-900">{item.name}</h3>
-                                <p className="mt-1 text-3xl font-semibold text-slate-900">{item.price}</p>
-                                <p className="text-sm text-slate-500 line-through">{item.oldPrice}</p>
-                            </article>
-                        ))}
+                    <div className="p-4">
+                        {/* Flash Sale carousel component */}
+                        {/* Import locally to avoid SSR issues */}
+                        <FlashCarousel items={flashSaleItems} />
                     </div>
                 </div>
             </section>
@@ -129,12 +92,8 @@ export default function HomePage() {
                     <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
                         {categoryImages.map((category) => (
                             <article key={category.label} className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md">
-                                <div className="aspect-[4/3] overflow-hidden">
-                                    <img
-                                        src={category.image}
-                                        alt={category.label}
-                                        className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-                                    />
+                                <div className="aspect-[4/3] overflow-hidden relative">
+                                    <Image src={(category.image as any)?.src ?? category.image} alt={category.label} fill className="object-cover transition duration-300 group-hover:scale-105" sizes="(max-width: 640px) 50vw, 25vw" />
                                 </div>
                                 <div className="px-4 py-3">
                                     <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-700">{category.label}</h3>
@@ -150,19 +109,19 @@ export default function HomePage() {
                     <h2 className="text-4xl font-semibold tracking-tight text-slate-900">Just For You</h2>
                     <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
                         {justForYouItems.map((item) => (
-                            <article key={item.name} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md">
-                                <div className="aspect-[4/3] overflow-hidden bg-slate-100">
-                                    <img src={item.image} alt={item.name} className="h-full w-full object-cover transition duration-300 hover:scale-105" />
+                            <Link key={item.id} href={`/products/${item.id}`} className="block overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md">
+                                <div className="aspect-[4/3] overflow-hidden bg-slate-100 relative">
+                                    <Image src={(item.image as any)?.src ?? item.image} alt={item.name} fill className="object-cover transition duration-300 hover:scale-105" sizes="(max-width: 640px) 50vw, 25vw" />
                                 </div>
                                 <div className="space-y-1 p-3">
                                     <h3 className="line-clamp-2 text-sm font-medium leading-5 text-slate-900">{item.name}</h3>
                                     <div className="flex items-baseline gap-2">
-                                        <span className="text-3xl font-semibold text-orange-600">{item.price}</span>
-                                        <span className="text-xs font-medium text-slate-500 line-through">{item.oldPrice}</span>
+                                        <span className="text-3xl font-semibold text-orange-600">{item.currency}{item.price.toLocaleString()}</span>
+                                        <span className="text-xs font-medium text-slate-500 line-through">{item.currency}{item.original.toLocaleString()}</span>
                                     </div>
                                     <p className="text-xs text-slate-500">Rating {item.rating} ({item.reviews})</p>
                                 </div>
-                            </article>
+                            </Link>
                         ))}
                     </div>
                 </div>
