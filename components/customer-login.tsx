@@ -3,8 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { get, ref } from 'firebase/database';
-import { firebaseApp, db } from '../lib/firebase';
+import { firebaseApp } from '../lib/firebase';
 
 const auth = getAuth(firebaseApp);
 const googleProvider = new GoogleAuthProvider();
@@ -17,34 +16,12 @@ export default function CustomerLogin() {
         setMessage(null);
         try {
             const result = await signInWithPopup(auth, googleProvider);
-            const user = result.user;
-            if (!user) {
+            if (!result.user) {
                 setMessage('Unable to read authenticated user. Please try again.');
                 return;
             }
 
-            if (!db) {
-                setMessage('Signed in successfully, but database access is not configured in this deployment.');
-                router.push('/customer/phone');
-                return;
-            }
-
-            let nextRoute = '/customer/phone';
-            try {
-                const profileRef = ref(db, `customerProfiles/${user.uid}`);
-                const profileSnap = await get(profileRef);
-                const profileData = profileSnap.exists() ? profileSnap.val() : null;
-
-                if (profileData?.phone) {
-                    nextRoute = '/customer/profile';
-                }
-            } catch (dbError) {
-                console.warn('Profile lookup failed after login:', dbError);
-                setMessage('Signed in successfully, but unable to load profile data due to database permission rules.');
-                nextRoute = '/customer/phone';
-            }
-
-            router.push(nextRoute);
+            router.push('/customer/phone');
         } catch (error: any) {
             console.error('Google sign-in error:', error);
             if (error.code === 'auth/popup-blocked' || error.code === 'auth/cancelled-popup-request') {

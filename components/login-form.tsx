@@ -27,7 +27,7 @@ export default function LoginForm() {
     return (
         <form onSubmit={handleSubmit} className="grid max-w-sm gap-4 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
             <label className="grid gap-2 text-sm font-medium text-slate-800">
-                Admin email
+                email
                 <input
                     type="email"
                     value={email}
@@ -50,7 +50,7 @@ export default function LoginForm() {
                 type="submit"
                 className="inline-flex items-center justify-center rounded-xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
             >
-                Sign in as Admin
+                Sign with email
             </button>
             {message && <p className="text-sm text-rose-600">{message}</p>}
         </form>

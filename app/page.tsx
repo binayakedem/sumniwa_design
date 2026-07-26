@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import HomeAuthCta from '../components/home-auth-cta';
 import heroImage from './homepicture.jpg';
 import firstImage from './img/first.jpg';
 import secondImage from './img/seond.jpg';
@@ -67,12 +68,7 @@ export default function HomePage() {
                             >
                                 Shop the collection
                             </Link>
-                            <Link
-                                href="/login"
-                                className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:border-slate-300 hover:bg-slate-50"
-                            >
-                                Sign in
-                            </Link>
+                            <HomeAuthCta />
                         </div>
                     </div>
 
