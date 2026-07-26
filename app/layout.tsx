@@ -8,6 +8,7 @@ import Footer from '../components/footer';
 export const metadata: Metadata = {
     title: 'Sumniwa Collection',
     description: 'Next.js ecommerce frontend with Firebase auth',
+    viewport: 'width=device-width, initial-scale=1',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
