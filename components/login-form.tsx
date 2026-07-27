@@ -50,7 +50,7 @@ export default function LoginForm() {
                 type="submit"
                 className="inline-flex items-center justify-center rounded-xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
             >
-                Sign with email
+                Sign in and open admin panel
             </button>
             {message && <p className="text-sm text-rose-600">{message}</p>}
         </form>
